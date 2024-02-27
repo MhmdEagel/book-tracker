@@ -74,6 +74,8 @@ def logout_user(request):
 ###########
 
 
+
+
 def show_xml(request):
     data = Book.objects.all()
     return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
