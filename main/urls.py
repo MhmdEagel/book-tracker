@@ -2,7 +2,8 @@ from django.urls import path
 from main.views import show_main, create_book, show_json, show_xml, show_xml_by_id, show_json_by_id
 from main.views import register
 from main.views import login_user, logout_user
-
+from main.views import edit_book
+from main.views import delete_book
 app_name = 'main'
 
 urlpatterns = [
@@ -15,5 +16,8 @@ urlpatterns = [
     path('xml/', show_xml, name='show_xml'),
     path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
     path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+    path('edit-book/<int:id>', edit_book, name='edit_book'),
+    path('delete/<int:id>', delete_book, name='delete_book'), # sesuaikan dengan nama fungsi yang dibuat
+
 
 ]

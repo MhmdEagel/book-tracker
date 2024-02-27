@@ -4,7 +4,8 @@
 <nav class="navbar navbar-expand-lg bg-primary mb-4">
   <div class="container-fluid">
     <a class="navbar-brand text-white fw-bold" href="/">Book Tracker</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -19,44 +20,50 @@
             <button class="btn  border-white" id="add-book">Logout</button>
           </a>
         </li>
-        
+
       </ul>
     </div>
   </div>
 </nav>
 
 
-<h5 class="mb-4">Name:</h5>
-<p>{{name}}</p>
 
-<h5>Class:</h5>
-<p>{{class}}</p>
-<table>
-    <tr>
-      <th>Name</th>
-      <th>Page</th>
-      <th>Description</th>
-      <th>Date Added</th>
-    </tr>
-  
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini
-    {%endcomment %} {% for book in books %}
-    <tr>
-      <td>{{book.name}}</td>
-      <td>{{book.page}}</td>
-      <td>{{book.description}}</td>
-      <td>{{book.date_added}}</td>
-    </tr>
-    {% endfor %}
-  </table>
-  
-  <br />
-  
-  <a href="{% url 'main:create_book' %}">
-    <button>Add New Book</button>
-  </a>
-  <a href="{% url 'main:logout' %}">
-    <button>Logout</button>
-  </a>
-  <h5>Sesi terakhir login: {{ last_login }}</h5>
+<table class="table align-middle text-center table-bordered">
+  <thead class="table-dark">
+    <th class="col">Name</th>
+    <th class="col"> Page</th>
+    <th class="col">Description</th>
+    <th class="col">Date Added</th>
+    <th class="col">Action</th>
+  </thead>
+
+  {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini
+  {%endcomment %} {% for book in books %}
+  <tbody>
+    <td>{{book.name}}</td>
+    <td>{{book.page}}</td>
+    <td>{{book.description}}</td>
+    <td>{{book.date_added}}</td>
+    <td>
+      <a href="{% url 'main:edit_book' book.pk %}">
+        <button class="btn btn-primary">
+          Edit
+        </button>
+      </a>
+      <a href="{% url 'main:delete_book' book.pk %}">
+        <button class="btn btn-danger">
+            Delete
+        </button>
+    </a>
+    </td>
+    
+  </tbody>
+  {% endfor %}
+</table>
+<br />
+<h5 class="mb-4">Name: {{name}}</h5>
+<h5>Class: {{class}}</h5>
+
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
 {% endblock content %}
